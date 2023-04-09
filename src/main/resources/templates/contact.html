@@ -32,50 +32,59 @@
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
 
-                <form id="contactForm" th:action="@{/saveMsg}" method="post">
+<!--                Show if there's any error-->
+                <p class="alert alert-danger " role="alert"
+                     th:each="error : ${#fields.errors('contact.*')}"
+                    th:text="${error}">
+                </p>
+
+
+                <form id="contactForm" th:action="@{/saveMsg}" method="post"
+                      th:object="${contact}">
                     <!-- Name input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="name" name="name"
+                        <input class="form-control" id="name"
+                               th:field="*{name}"
                                type="text"
                                placeholder="Enter your name..."  />
                         <label for="name">Full name</label>
-                        <div class="invalid-feedback">A name is required.</div>
+
+
                     </div>
                     <!-- Email address input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="email" name="email"
+                        <input class="form-control" id="email"
+                               th:field="*{email}"
                                type="email"
                                placeholder="name@example.com"  />
                         <label for="email">Email address</label>
-                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+
                     </div>
                     <!-- Phone number input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="phone" name="phone"
+                        <input class="form-control" id="phone"
+                               th:field="*{phone}"
                                type="tel"
                                placeholder="(123) 456-7890"  />
                         <label for="phone">Phone number</label>
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+
                     </div>
                     <!-- Name input-->
                     <div class="form-floating mb-3">
                         <input class="form-control" id="subject"
-                               name="subject" type="text"
+                               th:field="*{subject}" type="text"
                                placeholder="Message subject..."
                                 />
                         <label for="name">Message Subject</label>
-                        <div class="invalid-feedback"
-                             data-sb-feedback="subject:required">A message
-                            subject is required.</div>
+
                     </div>
                     <!-- Message input-->
                     <div class="form-floating mb-3">
                         <textarea class="form-control" id="message"
-                                  name="message"
+                                  th:field="*{message}"
                                   type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
                         <label for="message">Message</label>
-                        <div class="invalid-feedback" >A message is required.</div>
+
                     </div>
                     <!-- Submit success message-->
                     <!---->
