@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="header-link :: header-link"></head>
+<body>
+<!--navbar-->
+<div th:replace="secondary-navbar :: secondary-navbar"></div>
+
+<!-- Header-->
+<div th:replace="secondary-header :: secondary-header"></div>
+
+<section class="bg-light py-5">
+    <div class="container px-5 my-5 px-5">
+        <div class="text-center mb-5">
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+                <i class="bi bi-envelope"></i></div>
+            <h2 class="fw-bolder" th:text="${'Hello ' + username}">Hello</h2>
+            <p class="lead mb-0"
+               th:text="${'You are logged in as - ' + roles}">There</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer-->
+<div th:replace="footer :: footer"></div>
+
+</body>
