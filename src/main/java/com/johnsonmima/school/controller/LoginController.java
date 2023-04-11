@@ -32,7 +32,6 @@ public class LoginController {
         if (logout) {
             message = "You have been successfully logged out!";
         }
-
         model.addAttribute("message", message);
 
 
