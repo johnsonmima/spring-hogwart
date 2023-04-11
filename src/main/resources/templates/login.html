@@ -45,7 +45,9 @@
                                type="password"
                                placeholder="Enter your password..."/>
                         <label for="password">Password</label>
-
+                        <!--                    CSRF TOKEN-->
+                        <input type="hidden" th:name="${_csrf.parameterName}"
+                               th:value="${_csrf.token}"/>
 
                     </div>
 
