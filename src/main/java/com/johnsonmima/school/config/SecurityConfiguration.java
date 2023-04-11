@@ -22,7 +22,7 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests(
                         (authorize) -> authorize
-
+                                .requestMatchers("/h2-console/**").permitAll()
                                 .requestMatchers("/", "/home").permitAll()
                                 .requestMatchers("/contact").permitAll()
                                 .requestMatchers("/saveMsg").permitAll()
@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                                 .requestMatchers("/login").permitAll()
                                 .requestMatchers("/logout").permitAll()
                                 .requestMatchers("/dashboard").authenticated()
-                                .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 )
                 .httpBasic(withDefaults())
                 //.formLogin(withDefaults())
@@ -47,6 +47,8 @@ public class SecurityConfiguration {
                         .invalidateHttpSession(true)
                         .permitAll()
                 );
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
 
 
         return http.build();
