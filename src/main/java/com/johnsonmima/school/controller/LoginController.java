@@ -34,7 +34,6 @@ public class LoginController {
         }
         model.addAttribute("message", message);
 
-
         return "login.html";
     }
 
