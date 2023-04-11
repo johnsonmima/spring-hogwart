@@ -41,7 +41,6 @@ public class SecurityConfiguration {
                         .failureUrl("/login?error=true")
 
                 )
-
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout=true")
