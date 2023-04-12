@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AndRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -22,7 +24,7 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests(
                         (authorize) -> authorize
-                                .requestMatchers("/h2-console/**").permitAll()
+                                .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
                                 .requestMatchers("/", "/home").permitAll()
                                 .requestMatchers("/contact").permitAll()
                                 .requestMatchers("/saveMsg").permitAll()
@@ -30,8 +32,10 @@ public class SecurityConfiguration {
                                 .requestMatchers("/js/**").permitAll()
                                 .requestMatchers("/login").permitAll()
                                 .requestMatchers("/logout").permitAll()
+                                .requestMatchers("/displayMessage").hasRole(
+                                        "ADMIN")
+                                .requestMatchers("/closeMsg").hasRole("ADMIN")
                                 .requestMatchers("/dashboard").authenticated()
-                                .anyRequest().permitAll()
                 )
                 .httpBasic(withDefaults())
                 //.formLogin(withDefaults())

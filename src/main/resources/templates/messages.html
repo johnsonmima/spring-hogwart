@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:insert="header-link :: header-link"></head>
+<body>
+<!--navbar-->
+<div th:replace="secondary-navbar :: secondary-navbar"></div>
+
+<!-- Header-->
+<div th:replace="secondary-header :: secondary-header"></div>
+
+<section class="bg-light py-5">
+  <div class="container px-5 my-5 px-5">
+    <div class="text-center mb-5">
+      <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+        <i class="bi bi-envelope"></i></div>
+      <h2 class="fw-bolder" >All Messages </h2>
+<!--      <p class="lead mb-0">All Messages</p>-->
+    </div>
+
+  </div>
+</section>
+
+<!--for admin only-->
+<section  class="text-bg-light py-5"
+         sec:authorize="hasRole('ROLE_ADMIN')">
+  <div class="d-flex justify-content-center">
+    <div class="col-sm-12 col-md-10 col-lg-8 col-xl-8 ">
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Mobile Number</th>
+          <th scope="col">Email</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Message</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="msg : ${contactMsgs}">
+          <th scope="row" th:text="${msg.name}">1</th>
+          <td th:text="${msg.phone}">Mark</td>
+          <td th:text="${msg.email}">Otto</td>
+          <td th:text="${msg.subject}">@mdo</td>
+          <td th:text="${msg.message}">@mdo</td>
+          <td><a th:href="@{/closeMsg(id=${msg.contactId})}"
+                 class="btn btn-outline-info"
+          >CLOSE
+          </a>  </td>
+        </tr>
+
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer-->
+<div th:replace="footer :: footer"></div>
+
+</body>
