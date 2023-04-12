@@ -7,7 +7,9 @@ import lombok.Data;
 //@NotBlank: not null & trim length is greater than zero
 
 @Data
-public class Contact {
+public class Contact extends BaseEntity {
+
+    private int contactId;
 
     @NotBlank(message = "Name is required!")
     @Size(min = 3, message = "Name must be more than 3 character long!")
@@ -29,5 +31,9 @@ public class Contact {
     @NotBlank(message = "Message is required!")
     @Size(min = 10, message = "Message must be more than 10 character long!")
     private String message;
+
+    private String status;
+
+
 
 }
